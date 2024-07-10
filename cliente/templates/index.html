@@ -1,0 +1,7 @@
+{% if request.user.is_staff %}
+{% include 'dashboard.html' %}
+{% endif %}
+
+{% if request.user.is_visitor %}
+{% include 'member/varanda.html' %}
+{% endif %}

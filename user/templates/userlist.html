@@ -1,0 +1,157 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-2 text-gray-800">Lista User</h1>
+                    <!-- <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
+                        For more information about DataTables, please visit the <a target="_blank"
+                            href="https://datatables.net">official DataTables documentation</a>.</p> -->
+
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                      <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary text-muted">
+                            <a href="{% url 'home' %}">Varanda</a> / Lista Users
+                        </h6>
+                        <div class="d-flex justify-content-between">
+                        <!-- <a class="btn btn-sm btn-primary btn-icon-split mr-1" href="{% url 'create_user' %}">
+                            <span class="icon text-white-50">
+                                <i class="fas fa-plus"></i>
+                            </span>
+                            <span class="text">Aumenta</span>
+                        </a> -->
+                        <!-- <a class="btn btn-sm btn-primary btn-icon-split mr-1" href="#">
+                            <span class="icon text-white-50">
+                                <i class="fas fa-print"></i>
+                            </span>
+                            <span class="text">Pdf</span>
+                        </a> -->
+                        <!-- <a class="btn btn-sm btn-primary btn-icon-split" href="#">
+                            <span class="icon text-white-50">
+                                <i class="fas fa-print"></i>
+                            </span>
+                            <span class="text">Csv</span>
+                        </a> -->
+                        </div>
+                    </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Username</th>
+                                            <th>Email</th>
+                                            <th>First Name</th>
+                                            <th>Last Name</th>
+                                            <th>Status</th>
+                                            <th>Date Created</th>
+                                            <th>Last Login</th>
+                                            <!-- <th>Asaun</th> -->
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for data in userlist %}
+                                        <tr>
+                                            <td>{{ forloop.counter }}</td>
+                                            <td>{{ data.username }}</td>
+                                            <td>{{ data.email }}</td>
+                                            <td>{{ data.first_name }}</td>
+                                            <td>{{ data.last_name }}</td>
+                                            <td>{% if data.is_active %}<center><span class="badge badge-secondary">Active</span></center>{% else %}<center><span class="badge badge-warning">Not Active{% endif %}</span></center></td>
+                                            <td>{{ data.date_joined | date:"F d Y"}}</td>
+                                            <td>{{ data.last_login }}</td>
+                                            <!-- <td><a href="{% url 'update_user' data.id %}" class="btn btn-sm btn-success">
+                                              <span class="icon">
+                                                  <i class="fas fa-edit"></i>
+                                              </span></a>
+                                             <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delete-{{ data.id }}" style="text-decoration: none"><i class="fa fa-trash"></i></button>
+                                          </td> -->
+                                          <div class="modal fade" id="delete-{{ data.id}}"><!-- modal -->
+                                            <div class="modal-dialog">
+                                              <div class="modal-content">
+                                                <!-- Modal Header -->
+                                                <div class="modal-header">
+                                                  <h4 class="modal-title">Hamoos User</h4>
+                                                  <button type="button" class="close" data-dismiss="modal">X</button>
+                                                </div>
+                                                <!-- Modal body -->
+                                                <div class="modal-body">
+                                                  Ita Boot hakarak hamoos user ho naran {{ data.username | upper }}?
+                                                </div>
+                                                <!-- Modal footer -->
+                                                <div class="modal-footer">
+                                                  <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+                                                  <a href="{% url 'delete_user' data.id  %}" class="btn btn-info">Yes</a>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                      </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+ <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+
+                <script type="text/javascript">
+            $(document).ready(function () {
+              // action when dobleclick  
+              $(document).on("dblclick", ".editable", function () {
+                var value = $(this).text();
+                var input = "<input type='text' class='input-data form-control' value='"+value+"'>";
+                $(this).html(input);
+                $(this).removeClass("editable");
+              });
+
+              $(document).on("blur",".input-data",function () {
+                var value = $(this).val();
+                var td = $(this).parent("td");
+                $(this).remove();
+                td.html(value);
+                td.addClass("editable");
+                var type = td.data("type");
+                sendToServer(td.data("id"),value,type);
+              });
+              // remove editable bainhira hanehan enter
+              $(document).on("keypress",".input-data",function (e) {
+                var key = e.which;
+                if (key == 13) {
+                  var value = $(this).val();
+                  var td = $(this).parent("td");
+                  $(this).remove();
+                  td.html(value);
+                  td.addClass("editable");
+                  var type = td.data("type");
+                  sendToServer(td.data("id"),value,type);
+                }
+              });
+              // haruka data ba server ka database
+              function sendToServer(id,value,type) {
+                console.log(id);
+                console.log(value);
+                console.log(type);
+                var $doc  = $('.editable');
+                $.ajax({
+                  url:$doc.data("url"),
+                  type:"POST",
+                  data:{id:id,type:type,value:value},
+                })
+                .done(function(response) {
+                  console.log(response);
+                })
+                .fail(function(response) {
+                  console.log("Error Ocurred");
+                })
+              }
+
+            });
+          </script>
+   
+{% endblock %}

@@ -1,0 +1,30 @@
+#Halo ba Form nian
+pip install django-widget-tweaks
+
+#export_csv
+pip install django-import-export
+
+#export_pdf
+pip install xhtml2pdf
+
+
+#Django_Filter
+
+patient_list = Patient.objects.all()
+
+if "abc" in value_list:
+        company = Company.objects.get(name="abc")
+        patient_list = patient_list.filter(Q(company=company))
+
+if "alive" in value_list:
+        patient_list = patient_list.filter(Q(is_alive=True))
+
+if "male" in value_list:
+        patient_list = patient_list.filter(Q(sex=MALE))
+
+
+#Link_Django_Query
+https://www.javaer101.com/en/article/36765294.html
+
+#User : Admin
+#Pw   : Admin

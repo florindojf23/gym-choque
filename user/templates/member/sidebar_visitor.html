@@ -1,0 +1,105 @@
+{% load static %}
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'home' %}">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <img src="{% static 'assets/images/choque.png' %}" alt="Logo" style="width: 30px; height: 30px;">
+                </div>
+                <div class="sidebar-brand-text mx-3">CHOQUE-GYM <sup></sup></div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item {{active_varanda}}">
+                <a class="nav-link" href="{% url 'home' %}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Home</span></a>
+            </li>
+           
+            <!-- <li class="nav-item {{active_funsionariu}}">
+                <a class="nav-link" href="{% url 'member' %}">
+                    <i class="fas fa-fw fa-users"></i>
+                    <span>Membru</span></a>
+            </li>
+           
+            <li class="nav-item {{active_visitor}}">
+                <a class="nav-link" href="{% url 'gymclass' %}">
+                    <i class="fas fa-fw fa-users"></i>
+                    <span>Gym Klasse</span></a>
+            </li>
+           
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'enrollment' %}">
+                    <i class="fas fa-fw fa-users"></i>
+                    <span>Lista Membru Rejistradu</span></a>
+            </li> -->
+           
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Orariu || Relatoriu
+            </div>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
+                    aria-expanded="true" aria-controls="collapseTwo1">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Orariu</span>
+                </a>
+                <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{% url 'todays_schedule' %}">Orariu Loron Ohin</a>
+                        <a class="collapse-item" href="{% url 'weekly_schedule' %}">Orariu Semanal</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Relatoriu</span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{% url 'member_report' %}">Relatoriu Membru</a>
+                        <a class="collapse-item" href="{% url 'class_report' %}">Relatoriu Gym Klasse</a>
+                        <a class="collapse-item" href="{% url 'enrollment_report' %}">Relatoriu Memb. Rejistradu</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <!-- <div class="sidebar-heading">
+                Addons
+            </div> -->
+
+            <!-- Nav Item - Charts -->
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'charts' %}">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Grafiku</span></a>
+            </li>
+            <!-- <li class="nav-item">
+                <a class="nav-link" href="{% url 'userlist' %}">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>User</span></a>
+            </li> -->
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
+        </ul>

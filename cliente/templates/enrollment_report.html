@@ -1,0 +1,36 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div style="text-align: center;">
+    <h1>Relatoriu Lista Rejistradu</h1>
+    <table style="margin: auto; width: 80%; border-collapse: collapse; border: 1px solid #ddd;">
+        <thead>
+            <tr style="background-color: #f2f2f2;">
+                <!-- <th style="border: 1px solid #ddd; padding: 8px;">Id Membru</th> -->
+                <th style="border: 1px solid #ddd; padding: 8px;">Nu</th>
+                <th style="border: 1px solid #ddd; padding: 8px;">Naran Membru</th>
+                <th style="border: 1px solid #ddd; padding: 8px;">Naran Gym Klasse</th>
+                <th style="border: 1px solid #ddd; padding: 8px;">Data Rejistu</th>
+                <th style="border: 1px solid #ddd; padding: 8px;">Pagamentu/Fulan</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for enrollment in enrollments %}
+            <tr>
+                <!-- <td style="border: 1px solid #ddd; padding: 8px;">{{ enrollment.id }}</td> -->
+                <td style="border: 1px solid #ddd; padding: 8px;">{{ forloop.counter}}</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">{{ enrollment.member.naran }}</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">{{ enrollment.gym_class.name }}</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">{{ enrollment.enrollment_date }}</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">{{ enrollment.get_total_payment }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4" style="border: 1px solid #ddd; padding: 8px;">Lista Membru Rejistradu Sei Mamuk.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
