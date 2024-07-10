@@ -26,7 +26,7 @@ SECRET_KEY = 'jx6x4#-3(m^f56+cvf&28_avhyz)-4_10#^lq%p$1v#7$716tn'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['gym-choque.onrender.com','*']
 AUTH_USER_MODEL = 'user.User'
 
 
@@ -57,6 +57,7 @@ CRISPY_TEMPLATE_PACK = "bootstrap4"
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
