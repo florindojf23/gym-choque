@@ -20,35 +20,33 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
 
     <style>
-        /* Smooth Scrolling */
+        /* Custom CSS */
         html {
             scroll-behavior: smooth;
         }
 
-        /* Header Navigation Styles */
         .main-nav {
-            background-color: rgba(0, 0, 0, 0.2); /* Darker background for better visibility */
-            position: fixed; /* Fixed position for sticky header */
-            width: 100%; /* Full width */
-            top: 0; /* Stick to top */
+            background-color: rgba(0, 0, 0, 0.2);
+            position: fixed;
+            width: 100%;
+            top: 0;
             left: 0;
-            z-index: 1000; /* Ensure it's above other content */
-            padding: 10px 0; /* Add some padding for spacing */
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+            z-index: 1000;
+            padding: 10px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
 
         .main-nav .logo {
-            color: #fff; /* White color for logo text */
+            color: #fff;
             font-size: 28px;
             font-weight: 700;
             text-transform: uppercase;
-            margin-left: 20px; /* Add margin for spacing */ 
-            
+            margin-left: 20px;
         }
 
         .main-nav .nav {
             display: flex;
-            justify-content: center; /* Center align menu items */
+            justify-content: center;
             align-items: center;
             list-style: none;
             margin: 0;
@@ -56,47 +54,46 @@
         }
 
         .main-nav .nav li {
-            margin: 0 15px; /* Space out menu items */
+            margin: 0 15px;
         }
 
         .main-nav .nav a {
-            color: #fff; /* White color for menu items */
+            color: #fff;
             text-decoration: none;
             padding: 15px 20px;
             display: block;
             font-size: 16px;
             font-weight: 500;
-            transition: background-color 0.3s, color 0.3s; /* Smooth transitions */
+            transition: background-color 0.3s, color 0.3s;
         }
 
         .main-nav .nav a.active,
         .main-nav .nav a:hover {
-            background-color: #ffffff; /* Pink background for active/hovered item */
-            color: #333; /* Darker text color for contrast */
-            border-radius: 5px; /* Rounded corners */
+            background-color: #ffffff;
+            color: #333;
+            border-radius: 5px;
         }
 
         .main-nav .main-button {
-            background-color: #e4e4e4; /* Button background color */
-            color: #333; /* Button text color */
-            border-radius: 5px; /* Rounded corners */
+            background-color: #e4e4e4;
+            color: #333;
+            border-radius: 5px;
             padding: 10px 20px;
             font-size: 16px;
             font-weight: 600;
             text-transform: uppercase;
             text-decoration: none;
-            transition: background-color 0.3s, color 0.3s; /* Smooth transitions */
+            transition: background-color 0.3s, color 0.3s;
         }
 
         .main-nav .main-button:hover {
-            background-color: #d4d4d4; /* Darker button color on hover */
+            background-color: #d4d4d4;
             color: #333;
         }
 
-        /* Schedule Section */
         .schedule-section {
             padding: 80px 0;
-            background-color: #f8f9fa; /* Light gray background */
+            background-color: #f8f9fa;
         }
 
         .schedule-section h2 {
@@ -133,7 +130,6 @@
             color: #666;
         }
 
-        /* Contact Section */
         .contact-section {
             padding: 80px 0;
         }
@@ -180,7 +176,7 @@
             text-transform: uppercase;
             border-radius: 5px;
             cursor: pointer;
-            transition: background-color 0.3s, color 0.3s; /* Smooth transitions */
+            transition: background-color 0.3s, color 0.3s;
         }
 
         .contact-form input[type="submit"]:hover {
@@ -427,7 +423,6 @@
             </div>
         </div>
     </section>
-    
 
     <!-- Footer -->
     <footer>
@@ -436,10 +431,21 @@
         </div>
     </footer>
 
-    <!-- JS Files -->
+    <!-- JavaScript Files -->
     <script src="{% static 'assets/js/jquery.min.js' %}"></script>
     <script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
-    <script src="{% static 'assets/js/custom.js' %}"></script>
-
+    <script>
+        // Ensure Bootstrap components are initialized
+        document.addEventListener('DOMContentLoaded', function () {
+            var navbarToggler = document.querySelector('.navbar-toggler');
+            var navbarCollapse = document.querySelector('#navbarNav');
+            if (navbarToggler && navbarCollapse) {
+                navbarToggler.addEventListener('click', function () {
+                    navbarCollapse.classList.toggle('show');
+                });
+            }
+        });
+    </script>
 </body>
+
 </html>
